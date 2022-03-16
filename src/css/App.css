@@ -1,0 +1,105 @@
+header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.categoriesLinks {
+	display: flex;
+}
+
+.products {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-evenly;
+}
+
+.productLink {
+	width: 30%;
+	display: flex;
+	text-decoration: none;
+	color: inherit;
+}
+
+.productCard {
+	display: flex;
+	flex-direction: column;
+	padding: 1.5rem;
+}
+
+.productImageContainer {
+	position: relative;
+}
+
+.productImageContainer img {
+	object-fit: cover;
+	width: 100%;
+	height: 100%;
+	aspect-ratio: 1;
+}
+
+.outOfStock .productImageContainer {
+	filter: opacity(0.5);
+}
+
+.outOfStockText {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 1.5rem;
+}
+
+.productLink:hover {
+	box-shadow: 0 0 35px black;
+}
+
+.productPage {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.productGallery {
+	width: 40%;
+	align-items: center;
+	display: flex;
+}
+
+.productGallery > img {
+	width: 60%;
+}
+
+.slides {
+	display: flex;
+	flex-direction: column;
+	width: 20%;
+}
+
+.slides img {
+	width: 100%;
+}
+
+.attributesContainer {
+	display: flex;
+}
+
+.attributeItem {
+	padding: 0.3em;
+	border: 1px solid black;
+	margin-right: 0.5em;
+}
+
+.swatchContainer {
+	padding: 0.5em;
+	box-shadow: 0 0 5px 0 black;
+	border-radius: 30%;
+}
+
+.selectedAttribute {
+	background-color: black;
+	color: white;
+}
+
+.selectedAttribute .swatchContainer {
+	box-shadow: 0 0 5px 5px white;
+}
