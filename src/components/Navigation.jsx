@@ -6,7 +6,7 @@ class Navigation extends React.Component {
 		return (
 			<nav className="categoriesLinks">
 				{this.props.categories.map((category) => (
-					<Link style={{ padding: "0.5em" }} key={category.name} to={`/categories/${category.name}/`}>
+					<Link className="link" style={{ padding: "0.5em" }} key={category.name} to={`/categories/${category.name}/`}>
 						{category.name}
 					</Link>
 				))}

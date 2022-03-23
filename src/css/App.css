@@ -13,11 +13,18 @@ header {
 	justify-content: space-evenly;
 }
 
+.link {
+	text-decoration: none;
+	color: inherit;
+}
+
 .productLink {
 	width: 30%;
 	display: flex;
-	text-decoration: none;
-	color: inherit;
+}
+
+.productLink:hover {
+	box-shadow: 0 0 35px black;
 }
 
 .productCard {
@@ -49,10 +56,6 @@ header {
 	font-size: 1.5rem;
 }
 
-.productLink:hover {
-	box-shadow: 0 0 35px black;
-}
-
 .productPage {
 	display: flex;
 	flex-direction: row;
@@ -60,13 +63,17 @@ header {
 }
 
 .productGallery {
-	width: 40%;
+	width: 30%;
 	align-items: center;
 	display: flex;
 }
 
 .productGallery > img {
 	width: 60%;
+}
+
+.productInfo {
+	width: 30%;
 }
 
 .slides {
@@ -77,6 +84,7 @@ header {
 
 .slides img {
 	width: 100%;
+	cursor: pointer;
 }
 
 .attributesContainer {
@@ -102,4 +110,31 @@ header {
 
 .selectedAttribute .swatchContainer {
 	box-shadow: 0 0 5px 5px white;
+}
+
+.cartCard {
+	display: flex;
+}
+
+.cartCardGallery {
+	position: relative;
+	width: 20vw;
+}
+
+.cartCardGallery img {
+	width: 100%;
+	object-fit: contain;
+}
+
+.slideshowArrow {
+	position: absolute;
+	top: 50%;
+	color: white;
+	text-shadow: 1px 1px 3px black;
+	z-index: 1;
+	cursor: pointer;
+}
+
+.slideRight {
+	right: 0;
 }

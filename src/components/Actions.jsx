@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import EmptyCart from "../assets/empty-cart.svg";
 
 class Actions extends React.Component {
@@ -38,7 +39,9 @@ class Actions extends React.Component {
 						</div>
 					) : null}
 				</div>
-				<img src={EmptyCart} alt="Empty cart" />
+				<Link to="/cart">
+					<img src={EmptyCart} alt="Empty cart" />
+				</Link>
 			</div>
 		);
 	}

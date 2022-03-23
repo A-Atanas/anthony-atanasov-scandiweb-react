@@ -30,7 +30,7 @@ const productAttributes = new Field("attributes", true)
 export const getProduct = async (productID) => {
 	const product = new Query("product")
 		.addArgument("id", "String!", productID)
-		.addFieldList([...productMainFields, "description", "brand"])
+		.addFieldList([...productMainFields, "description", "brand", "category"])
 		.addField(priceField, true)
 		.addField(productAttributes);
 	return await client.post(product);

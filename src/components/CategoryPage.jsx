@@ -13,7 +13,6 @@ class CategoryPage extends React.Component {
 
 	async fetchCategory() {
 		getCategoryProducts(this.props.match.params.category).then(({ category: { products } }) => {
-			// console.log(products);
 			this.setState({ products });
 		});
 	}
@@ -37,7 +36,7 @@ class CategoryPage extends React.Component {
 						<Link
 							key={id}
 							to={`products/${id}`}
-							className={`productLink ${!inStock ? "outOfStock" : ""}`}
+							className={`link productLink ${!inStock ? "outOfStock" : ""}`}
 						>
 							<div className="productCard">
 								<div className="productImageContainer">

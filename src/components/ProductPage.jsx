@@ -32,7 +32,6 @@ class ProductPage extends React.Component {
 	}
 
 	render() {
-		console.log(this.props, this.state)
 		const product = this.state.product;
 		return (
 			<div className="productPage">
@@ -85,9 +84,13 @@ class ProductPage extends React.Component {
 					</div>
 					<div>
 						<h2>Price:</h2>
-						<h2>{product.prices?.[this.props.currencyIndex].currency} {product.prices?.[this.props.currencyIndex].amount}</h2>
+						<h2>{product.prices?.[this.props.currencyIndex].currency}{" "}
+							{product.prices?.[this.props.currencyIndex].amount}</h2>
 					</div>
-					{ReactHtmlParser(product.description)}
+					<button onClick={() => this.props.addToCart({ product, chosenAttributes: { ...this.state.chosenAttributes } })}>Add to Cart</button>
+					<div>
+						{ReactHtmlParser(product.description)}
+					</div>
 				</div>
 			</div>
 		);
