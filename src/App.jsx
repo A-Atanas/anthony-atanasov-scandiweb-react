@@ -5,6 +5,7 @@ import CategoryPage from "./components/CategoryPage";
 import PageNotFound from "./components/PageNotFound";
 import ProductPage from "./components/ProductPage";
 import CartPage from "./components/CartPage";
+import MiniCart from "./components/MiniCart";
 import { getCategoriesAndCurrencies } from "./api/api";
 import { Switch, Route, Redirect } from "react-router-dom";
 import _ from "lodash";
@@ -13,10 +14,11 @@ class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			currencies: [],	
+			currencies: [],
 			currencyDisplayed: 0, // index of the array above
 			categories: [],
 			cart: [],
+			showingMiniCart: false,
 		};
 	}
 
@@ -81,15 +83,36 @@ class App extends React.Component {
 		this.setState({ cart: cartCopy });
 	}
 
+	toggleMiniCart = () => {
+		this.setState({ showingMiniCart: !this.state.showingMiniCart });
+	}
+
+	clearCart = () => {
+		this.setState({ cart: [] })
+	}
+
 	render() {
 		return (
 			<div className="app">
-				<Header
-					categories={this.state.categories}
-					currencies={this.state.currencies}
-					currencyDisplayed={this.state.currencyDisplayed}
-					chooseCurrency={(index) => this.chooseCurrency(index)}
-				/>
+				<div>
+					<Header
+						categories={this.state.categories}
+						currencies={this.state.currencies}
+						currencyDisplayed={this.state.currencyDisplayed}
+						chooseCurrency={(index) => this.chooseCurrency(index)}
+						toggleMiniCart={this.toggleMiniCart}
+					/>
+					{this.state.showingMiniCart ?
+						<MiniCart
+							currencyIndex={this.state.currencyDisplayed}
+							cart={this.state.cart}
+							incrementProductQuantity={(index) => this.incrementProductQuantity(index)}
+							decrementProductQuantity={(index) => this.decrementProductQuantity(index)}
+							currencySymbol={this.state.currencies?.[this.state.currencyDisplayed]?.symbol}
+							toggleMiniCart={this.toggleMiniCart}
+							clearCart={this.clearCart}
+						/> : null}
+				</div>
 				<Switch>
 					<Route exact path="/">
 						<Redirect to="/categories/all/" />
@@ -121,6 +144,8 @@ class App extends React.Component {
 							cart={this.state.cart}
 							incrementProductQuantity={(index) => this.incrementProductQuantity(index)}
 							decrementProductQuantity={(index) => this.decrementProductQuantity(index)}
+							isMiniCart={false}
+							currencySymbol={this.state.currencies?.[this.state.currencyDisplayed]?.symbol}
 						/>)} />
 					<Route path="*" component={PageNotFound} />
 				</Switch>

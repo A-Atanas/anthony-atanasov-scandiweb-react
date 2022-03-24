@@ -13,6 +13,7 @@ class Header extends React.Component {
 					currencies={this.props.currencies}
 					currencyDisplayed={this.props.currencyDisplayed}
 					chooseCurrency={this.props.chooseCurrency}
+					toggleMiniCart={this.props.toggleMiniCart}
 				/>
 			</header>
 		);
