@@ -20,7 +20,7 @@ class Actions extends React.Component {
 			<div>
 				<div className="currencies-dropdown">
 					<button className="dropdown-button" onClick={this.toggleCurrenciesMenu}>
-						{this.props.currencies?.[this.props.currencyDisplayed]?.symbol}
+						{this.props.currencies?.[this.props.currencyIndex]?.symbol}
 					</button>
 					{this.state.showingCurrenciesMenu ? (
 						<div>

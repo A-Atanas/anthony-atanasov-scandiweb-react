@@ -27,6 +27,32 @@ header {
 	box-shadow: 0 0 35px black;
 }
 
+.quickAddToCartButton {
+	display: none;
+}
+
+.productLink:hover .quickAddToCartButton {
+	display: flex;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	transform: translateY(50%);
+	justify-content: center;
+	align-items: center;
+	background-color: #5ECE7B;
+	color: white;
+	border-radius: 50%;
+	border: none;
+	width: 3rem;
+	height: 3rem;
+	cursor: pointer;
+}
+
+.cartIcon {
+	/* I couldn't change icon's color to white, so I just applied filter*/
+	filter: brightness(10);
+}
+
 .productCard {
 	display: flex;
 	flex-direction: column;
@@ -37,14 +63,14 @@ header {
 	position: relative;
 }
 
-.productImageContainer img {
+.productImage {
 	object-fit: cover;
 	width: 100%;
 	height: 100%;
 	aspect-ratio: 1;
 }
 
-.outOfStock .productImageContainer {
+.outOfStock {
 	filter: opacity(0.5);
 }
 
@@ -150,6 +176,8 @@ header {
 	display: flex;
 	flex-direction: column;
 	width: 20vw;
+	max-height: 50%;
+	overflow-y: auto;
 	font-size: 0.5rem;
 	z-index: 1;
 	background-color: white;

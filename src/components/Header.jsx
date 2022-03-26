@@ -11,7 +11,7 @@ class Header extends React.Component {
 				<img src={logo} alt="Company logotype" />
 				<Actions
 					currencies={this.props.currencies}
-					currencyDisplayed={this.props.currencyDisplayed}
+					currencyIndex={this.props.currencyIndex}
 					chooseCurrency={this.props.chooseCurrency}
 					toggleMiniCart={this.props.toggleMiniCart}
 				/>

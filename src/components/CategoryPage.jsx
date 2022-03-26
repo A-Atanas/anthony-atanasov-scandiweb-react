@@ -1,6 +1,7 @@
 import React from "react";
 import PageNotFound from "./PageNotFound";
-import { getCategoryProducts } from "../api/api";
+import EmptyCart from "../assets/empty-cart.svg";
+import { getCategoryProducts, getProduct } from "../api/api";
 import { Link } from "react-router-dom";
 
 class CategoryPage extends React.Component {
@@ -14,6 +15,14 @@ class CategoryPage extends React.Component {
 	async fetchCategory() {
 		getCategoryProducts(this.props.match.params.category).then(({ category: { products } }) => {
 			this.setState({ products });
+		});
+	}
+
+	async quicklyAddToCart(event, productID) {
+		event.preventDefault();
+		getProduct(productID).then(({ product }) => {
+			const defaultAttributes = Object.fromEntries(product.attributes.map((attribute) => [attribute.name, 0]));
+			this.props.addToCart({ product, chosenAttributes: defaultAttributes });
 		});
 	}
 
@@ -32,24 +41,29 @@ class CategoryPage extends React.Component {
 			<>
 				<h1>{this.props.match.params.category}</h1>
 				<div className="products">
-					{this.state.products.map(({ id, name, gallery, prices, inStock }) => (
+					{this.state.products.map((product) => (
 						<Link
-							key={id}
-							to={`products/${id}`}
-							className={`link productLink ${!inStock ? "outOfStock" : ""}`}
+							key={product.id}
+							to={`products/${product.id}`}
+							className={`link productLink ${!product.inStock ? "outOfStock" : ""}`}
 						>
 							<div className="productCard">
 								<div className="productImageContainer">
-									<img src={gallery[0]} alt={id} />
-									{!inStock ? (
+									<img src={product.gallery[0]} alt={product.id} className="productImage" />
+									{!product.inStock ? (
 										<p className="outOfStockText">OUT OF STOCK</p>
 									) : null}
+									<button className="quickAddToCartButton" onClick={(event) => this.quicklyAddToCart(event, product.id)}>
+										<img src={EmptyCart} alt="Empty cart" className="cartIcon" />
+									</button>
 								</div>
-								<p>{name}</p>
-								<p>
-									{prices[this.props.currencyIndex].currency}{" "}
-									{prices[this.props.currencyIndex].amount}
-								</p>
+								<div>
+									<p>{product.name}</p>
+									<p>
+										{product.prices[this.props.currencyIndex].currency}{" "}
+										{product.prices[this.props.currencyIndex].amount}
+									</p>
+								</div>
 							</div>
 						</Link>
 					))}
