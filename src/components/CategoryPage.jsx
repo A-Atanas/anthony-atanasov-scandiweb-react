@@ -54,7 +54,7 @@ class CategoryPage extends React.Component {
 										<p className="outOfStockText">OUT OF STOCK</p>
 									) : null}
 									<button className="quickAddToCartButton" onClick={(event) => this.quicklyAddToCart(event, product.id)}>
-										<img src={EmptyCart} alt="Empty cart" className="cartIcon" />
+										<img src={EmptyCart} alt="Empty cart" className="buyInOneClickIcon" />
 									</button>
 								</div>
 								<div>

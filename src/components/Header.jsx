@@ -14,6 +14,7 @@ class Header extends React.Component {
 					currencyIndex={this.props.currencyIndex}
 					chooseCurrency={this.props.chooseCurrency}
 					toggleMiniCart={this.props.toggleMiniCart}
+					bagSize={this.props.bagSize}
 				/>
 			</header>
 		);

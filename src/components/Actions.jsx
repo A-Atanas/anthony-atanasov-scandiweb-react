@@ -38,7 +38,10 @@ class Actions extends React.Component {
 						</div>
 					) : null}
 				</div>
-				<img src={EmptyCart} alt="Empty cart" onClick={() => this.props.toggleMiniCart()}/>
+				<div className="cartIcon" onClick={() => this.props.toggleMiniCart()} >
+					<img src={EmptyCart} alt="Empty cart" />
+					{this.props.bagSize ? <p>{this.props.bagSize}</p> : null}
+				</div>
 			</div>
 		);
 	}

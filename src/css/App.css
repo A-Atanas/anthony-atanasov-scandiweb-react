@@ -48,7 +48,7 @@ header {
 	cursor: pointer;
 }
 
-.cartIcon {
+.buyInOneClickIcon {
 	/* I couldn't change icon's color to white, so I just applied filter*/
 	filter: brightness(10);
 }
@@ -205,4 +205,24 @@ header {
 	justify-content: center;
 	align-items: center;
 	cursor: default;
+}
+
+.cartIcon {
+	position: relative;
+}
+
+.cartIcon p {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	top: 0;
+	right: 0;
+	margin: 0;
+	font-size: 0.75rem;
+	width: 1rem;
+	height: 1rem;
+	background-color: black;
+	color: white;
+	border-radius: 50%;
+	transform: translateY(-25%) translateX(25%);
 }

@@ -100,6 +100,7 @@ class App extends React.Component {
 						currencyIndex={this.state.currencyIndex}
 						chooseCurrency={(index) => this.chooseCurrency(index)}
 						toggleMiniCart={this.toggleMiniCart}
+						bagSize={this.state.cart.length}
 					/>
 					{this.state.showingMiniCart ?
 						<CartPage
