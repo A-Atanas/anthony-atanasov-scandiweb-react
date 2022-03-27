@@ -22,6 +22,16 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
+		if (localStorage.getItem("currencyIndex") !== null) {
+			this.setState({
+				currencyIndex: localStorage.getItem("currencyIndex"),
+			});
+		}
+		if (localStorage.getItem("cart") !== null) {
+			this.setState({
+				cart: JSON.parse(localStorage.getItem("cart")),
+			});
+		}
 		getCategoriesAndCurrencies().then(({ categories, currencies }) => {
 			this.setState({ categories, currencies });
 		});
@@ -29,6 +39,7 @@ class App extends React.Component {
 
 	chooseCurrency = (currencyIndex) => {
 		this.setState({ currencyIndex: currencyIndex });
+		localStorage.setItem("currencyIndex", currencyIndex);
 	};
 
 	addToCart = ({ product, chosenAttributes }) => {
@@ -47,39 +58,41 @@ class App extends React.Component {
 				&& _.isEqual(productToFind.chosenAttributes, chosenAttributes)
 		);
 
-		this.setState(productAlreadyInCart
-			? {
-				cart: this.state.cart.map(
-					(product) =>
-						product.id === productDataForCart.id && _.isEqual(product.chosenAttributes, chosenAttributes)
-							? { ...product, quantity: product.quantity + 1 }
-							: product
-				)
-			} : {
-				cart: [...this.state.cart, { ...productDataForCart, chosenAttributes }]
-			}
-		)
+		let newCart = [...this.state.cart];
+		if (productAlreadyInCart) {
+			newCart = this.state.cart.map((productInCart) => {
+				if (productInCart.id === productDataForCart.id) {
+					productInCart.quantity++;
+				}
+				return productInCart;
+			});
+		} else {
+			newCart.push({ ...productDataForCart, chosenAttributes });
+		}
+		localStorage.setItem("cart", JSON.stringify(newCart))
+		this.setState({ cart: newCart });
 	}
 
 	incrementProductQuantity = (productIndex) => {
-		this.setState({
-			cart: this.state.cart.map(
-				(product, index) =>
-					productIndex === index
-						? { ...product, quantity: product.quantity + 1 }
-						: product
-			)
-		})
+		let newCart = this.state.cart.map(
+			(product, index) =>
+				productIndex === index
+					? { ...product, quantity: product.quantity + 1 }
+					: product
+		);
+		localStorage.setItem("cart", JSON.stringify(newCart));
+		this.setState({ cart: newCart });
 	}
 
 	decrementProductQuantity = (productIndex) => {
-		const cartCopy = [...this.state.cart];
-		if (cartCopy[productIndex].quantity === 1) {
-			cartCopy.splice(productIndex, 1);
+		const newCart = [...this.state.cart];
+		if (newCart[productIndex].quantity === 1) {
+			newCart.splice(productIndex, 1);
 		} else {
-			cartCopy[productIndex].quantity--;
+			newCart[productIndex].quantity--;
 		}
-		this.setState({ cart: cartCopy });
+		localStorage.setItem("cart", JSON.stringify(newCart));
+		this.setState({ cart: newCart });
 	}
 
 	toggleMiniCart = () => {
