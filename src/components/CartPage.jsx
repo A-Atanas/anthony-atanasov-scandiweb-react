@@ -11,7 +11,7 @@ class CartPage extends React.Component {
 			<div className={classNames({ "miniCart": this.props.isMiniCart })}>
 				{
 					isMiniCart
-						? <h1>My bag, {this.props.cart.length} items</h1>
+						? <h1>My bag, {this.props.cart.reduce((acc, product) => acc += product.quantity, 0)} items</h1>
 						: <h1>Cart</h1>
 				}
 				{this.props.cart.length > 0 ? (
