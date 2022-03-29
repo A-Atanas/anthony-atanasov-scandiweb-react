@@ -8,11 +8,14 @@ class Header extends React.Component {
 		return (
 			<header>
 				<Navigation categories={this.props.categories} />
-				<img src={logo} alt="Company logotype" />
+				<div className="logo">
+					<img src={logo} alt="Company logotype"/>
+				</div>
 				<Actions
 					currencies={this.props.currencies}
 					currencyIndex={this.props.currencyIndex}
 					chooseCurrency={this.props.chooseCurrency}
+					showingMiniCart={this.props.showingMiniCart}
 					toggleMiniCart={this.props.toggleMiniCart}
 					bagSize={this.props.bagSize}
 				/>

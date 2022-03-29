@@ -61,7 +61,8 @@ class App extends React.Component {
 		let newCart = [...this.state.cart];
 		if (productAlreadyInCart) {
 			newCart = this.state.cart.map((productInCart) => {
-				if (productInCart.id === productDataForCart.id) {
+				if (productInCart.id === productDataForCart.id
+					&& _.isEqual(productInCart.chosenAttributes, chosenAttributes)) {
 					productInCart.quantity++;
 				}
 				return productInCart;
@@ -100,18 +101,20 @@ class App extends React.Component {
 	}
 
 	clearCart = () => {
+		localStorage.removeItem("cart");
 		this.setState({ cart: [] })
 	}
 
 	render() {
 		return (
 			<div className="app">
-				<div>
+				<div className="headerContainer">
 					<Header
 						categories={this.state.categories}
 						currencies={this.state.currencies}
 						currencyIndex={this.state.currencyIndex}
 						chooseCurrency={(index) => this.chooseCurrency(index)}
+						showingMiniCart={this.state.showingMiniCart}
 						toggleMiniCart={this.toggleMiniCart}
 						bagSize={this.state.cart.reduce((acc, product) => acc + product.quantity, 0)}
 					/>
@@ -124,6 +127,7 @@ class App extends React.Component {
 							isMiniCart={true}
 							currencySymbol={this.state.currencies?.[this.state.currencyIndex]?.symbol}
 							toggleMiniCart={this.toggleMiniCart}
+							showingMiniCart={this.state.showingMiniCart}
 							clearCart={this.clearCart}
 						/> : null}
 				</div>
@@ -164,6 +168,7 @@ class App extends React.Component {
 						/>)} />
 					<Route path="*" component={PageNotFound} />
 				</Switch>
+				{this.state.showingMiniCart ? <div id="miniCartOverlay"></div> : null}
 			</div>
 		);
 	}

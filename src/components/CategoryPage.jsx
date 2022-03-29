@@ -1,6 +1,7 @@
 import React from "react";
 import PageNotFound from "./PageNotFound";
 import EmptyCart from "../assets/empty-cart.svg";
+import {capitalize} from "../util/capitalize";
 import { getCategoryProducts, getProduct } from "../api/api";
 import { Link } from "react-router-dom";
 
@@ -38,8 +39,8 @@ class CategoryPage extends React.Component {
 
 	render() {
 		return this.state.products !== null && this.state.products.length > 0 ? (
-			<>
-				<h1>{this.props.match.params.category}</h1>
+			<div className="categoryContainer">
+				<h1 className="pageName">{capitalize(this.props.match.params.category)}</h1>
 				<div className="products">
 					{this.state.products.map((product) => (
 						<Link
@@ -57,18 +58,18 @@ class CategoryPage extends React.Component {
 										<img src={EmptyCart} alt="Empty cart" className="buyInOneClickIcon" />
 									</button>
 								</div>
-								<div>
+								<div className="productNameAndPrice">
 									<p>{product.name}</p>
-									<p>
+									<b>
 										{product.prices[this.props.currencyIndex].currency}{" "}
 										{product.prices[this.props.currencyIndex].amount}
-									</p>
+									</b>
 								</div>
 							</div>
 						</Link>
 					))}
 				</div>
-			</>
+			</div>
 		) : (
 			<PageNotFound />
 		);

@@ -45,16 +45,20 @@ class ProductPage extends React.Component {
 								onClick={() => this.setState({ displayedImageIndex: index })} />
 						))}
 					</div>
-					<img src={product.gallery?.[this.state.displayedImageIndex]} alt={this.state.displayedImageIndex} />
+					<div className="mainImage">
+						<img src={product.gallery?.[this.state.displayedImageIndex]} alt={this.state.displayedImageIndex} />
+					</div>
 				</div>
 				<div className="productInfo">
-					<h2>{product.brand}</h2>
-					<h3>{product.name}</h3>
-					<div>
+					<div className="productNameAndBrand">
+						<h2 className="productBrand">{product.brand}</h2>
+						<h2 className="productName">{product.name}</h2>
+					</div>
+					<div className="allAttributes">
 						{product.attributes?.map((attribute) => (
 							<div key={attribute.id}>
-								<h2>{attribute.name}</h2>
-								<div className="attributesContainer">
+								<b>{attribute.name.toUpperCase()}:</b>
+								<div className="attributeContainer">
 									{attribute.items?.map((item, index) => (
 										<div
 											key={item.id}
@@ -83,12 +87,17 @@ class ProductPage extends React.Component {
 						))}
 					</div>
 					<div>
-						<h2>Price:</h2>
+						<h3 className="defaultFontText">PRICE:</h3>
 						<h2>{product.prices?.[this.props.currencyIndex].currency}{" "}
 							{product.prices?.[this.props.currencyIndex].amount}</h2>
 					</div>
-					<button onClick={() => this.props.addToCart({ product, chosenAttributes: { ...this.state.chosenAttributes } })}>Add to Cart</button>
-					<div>
+					<button
+						onClick={
+							() => this.props.addToCart({ product, chosenAttributes: { ...this.state.chosenAttributes } })
+						}
+						className="addToCartButton"
+					>ADD TO CART</button>
+					<div className="defaultFontText">
 						{ReactHtmlParser(product.description)}
 					</div>
 				</div>

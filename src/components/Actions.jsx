@@ -1,44 +1,19 @@
 import React from "react";
 import EmptyCart from "../assets/empty-cart.svg";
+import CurrenciesDropdown from "./CurrenciesDropdown";
 
 class Actions extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			showingCurrenciesMenu: false,
-		};
-	}
-
-	toggleCurrenciesMenu = () => {
-		this.setState({
-			showingCurrenciesMenu: !this.state.showingCurrenciesMenu,
-		});
-	};
 
 	render() {
 		return (
-			<div>
-				<div className="currencies-dropdown">
-					<button className="dropdown-button" onClick={this.toggleCurrenciesMenu}>
-						{this.props.currencies?.[this.props.currencyIndex]?.symbol}
-					</button>
-					{this.state.showingCurrenciesMenu ? (
-						<div>
-							{this.props.currencies.map((currency, index) => (
-								<button
-									key={currency.label}
-									onClick={() => {
-										this.props.chooseCurrency(index);
-										this.toggleCurrenciesMenu();
-									}}
-								>
-									{currency.symbol} {currency.label}
-								</button>
-							))}
-						</div>
-					) : null}
-				</div>
-				<div className="cartIcon" onClick={() => this.props.toggleMiniCart()} >
+			<div className="actions">
+				<CurrenciesDropdown 
+					currencies={this.props.currencies}
+					toggleCurrenciesMenu={this.toggleCurrenciesMenu}
+					chooseCurrency={this.props.chooseCurrency}
+					currencyIndex={this.props.currencyIndex}
+				/>
+				<div className="cartIcon" onClick={() => this.props.toggleMiniCart()}>
 					<img src={EmptyCart} alt="Empty cart" />
 					{this.props.bagSize ? <p>{this.props.bagSize}</p> : null}
 				</div>

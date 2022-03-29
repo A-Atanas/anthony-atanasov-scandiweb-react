@@ -1,10 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway");
+
+.app {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-family: "Raleway", sans-serif;
+}
+
+.defaultFontText {
+	font-family: sans-serif;
+}
+
+.headerContainer {
+	position: sticky;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: white;
+	width: 100%;
+	top: 0px;
+	z-index: 5;
+	margin-bottom: 3em;
+}
+
 header {
+	height: 10vh;
+	width: 90%;
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
+	background-color: white;
+}
+
+.link {
+	text-decoration: none;
+	color: black;
 }
 
 .categoriesLinks {
 	display: flex;
+	flex: 1;
+	margin-right: auto;
+	height: 100%;
+}
+
+.logo {
+	display: flex;
+	justify-content: center;
+	flex: 1;
+}
+
+.categoriesLinks .link {
+	display: flex;
+	align-items: center;
+	padding: 1em;
+}
+
+.activeLink {
+	border-bottom: 2px solid #5ece7b;
+	color: #5ece7b;
+}
+
+.actions {
+	display: flex;
+	flex: 1;
+	justify-content: flex-end;
+	margin-left: auto;
+	width: 6%;
+}
+
+.currenciesDropdown {
+	width: 20%;
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.dropdownButton {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	width: 50%;
+	font-size: 1.2rem;
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+.dropdownArrow {
+	width: 0.5em;
+}
+
+.dropdownArrowActive {
+	transform: rotate(180deg);
+}
+
+.currenciesMenu {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	top: 3.5em;
+	background-color: white;
+	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+	z-index: 10;
+}
+
+.currenciesMenu button {
+	display: flex;
+	align-items: center;
+	padding: 1rem;
+	border: none;
+	background: none;
+	cursor: pointer;
+	font-size: 1.2rem;
+	width: 100%;
+}
+
+.currenciesMenu button:hover {
+	background-color: #f2f2f2;
+}
+
+.categoryContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 90%;
+}
+
+.pageName {
+	display: flex;
+	align-self: flex-start;
+	margin-bottom: 3em;
 }
 
 .products {
@@ -13,14 +138,9 @@ header {
 	justify-content: space-evenly;
 }
 
-.link {
-	text-decoration: none;
-	color: inherit;
-}
-
 .productLink {
-	width: 30%;
 	display: flex;
+	height: 500px;
 }
 
 .productLink:hover {
@@ -35,11 +155,11 @@ header {
 	display: flex;
 	position: absolute;
 	bottom: 0;
-	right: 0;
+	right: 10px;
 	transform: translateY(50%);
 	justify-content: center;
 	align-items: center;
-	background-color: #5ECE7B;
+	background-color: #5ece7b;
 	color: white;
 	border-radius: 50%;
 	border: none;
@@ -56,18 +176,21 @@ header {
 .productCard {
 	display: flex;
 	flex-direction: column;
-	padding: 1.5rem;
+	padding: 1.2rem;
+	height: max-content;
 }
 
 .productImageContainer {
 	position: relative;
+	height: 350px;
+	width: 350px;
 }
 
 .productImage {
 	object-fit: cover;
 	width: 100%;
 	height: 100%;
-	aspect-ratio: 1;
+	/* aspect-ratio: 1; */
 }
 
 .outOfStock {
@@ -83,44 +206,75 @@ header {
 }
 
 .productPage {
+	width: 90%;
 	display: flex;
 	flex-direction: row;
-	justify-content: center;
+	justify-content: flex-start;
 }
 
 .productGallery {
-	width: 30%;
-	align-items: center;
+	width: 60%;
+	align-items: flex-start;
 	display: flex;
 }
 
-.productGallery > img {
-	width: 60%;
+.mainImage {
+	width: 35vw;
+	height: 60vh;
+}
+
+.mainImage img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
 }
 
 .productInfo {
-	width: 30%;
+	width: 20%;
+}
+
+.productInfo > div {
+	margin-bottom: 2rem;
+}
+
+.productName {
+	font-weight: normal;
+}
+
+.productName,
+.productBrand {
+	margin-bottom: 0.5em;
+	margin-top: 0.5em;
 }
 
 .slides {
 	display: flex;
 	flex-direction: column;
-	width: 20%;
+	justify-content: flex-start;
+	width: 100px;
 }
 
 .slides img {
-	width: 100%;
+	height: 100px;
 	cursor: pointer;
+	object-fit: cover;
+	margin-bottom: 1em;
 }
 
-.attributesContainer {
+.attributeContainer {
 	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 0.5em;
 }
 
 .attributeItem {
-	padding: 0.3em;
+	display: flex;
+	flex: 1;
+	justify-content: center;
+	padding: 0.5em;
 	border: 1px solid black;
 	margin-right: 0.5em;
+	cursor: pointer;
 }
 
 .swatchContainer {
@@ -138,8 +292,51 @@ header {
 	box-shadow: 0 0 5px 5px white;
 }
 
+.addToCartButton,
+.checkOutButton {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 50px;
+	margin-bottom: 2em;
+	background-color: #5ece7b;
+	color: white;
+	border: none;
+	cursor: pointer;
+	font-size: 1em;
+}
+
+.addToCartButton:hover,
+.checkOutButton:hover {
+	filter: brightness(90%);
+}
+
+.checkOutButton .link {
+	color: white;
+}
+
+.cart {
+	display: flex;
+	justify-self: flex-start;
+	flex-direction: column;
+	width: 90%;
+}
+
 .cartCard {
 	display: flex;
+	justify-content: space-between;
+	width: 90%;
+	border-top: 1px solid #e5e5e5;
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+.cartCard h1 {
+	margin-bottom: 0;
+}
+.cartCardProductInfo {
+	width: 50%;
 }
 
 .cartCardGallery {
@@ -153,6 +350,7 @@ header {
 }
 
 .slideshowArrow {
+	display: none;
 	position: absolute;
 	top: 50%;
 	color: white;
@@ -161,41 +359,147 @@ header {
 	cursor: pointer;
 }
 
+.cartCardGallery:hover .slideshowArrow {
+	display: flex;
+}
+
 .slideRight {
 	right: 0;
 }
 
 .cartProductAttributes {
 	display: flex;
+	align-items: baseline;
+}
+
+.cartProductAttributes > h2 {
+	margin-right: 0.5em;
+}
+
+.cartCardActions {
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+}
+
+.itemQuantityChanger {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin-right: 1em;
+}
+
+.itemQuantityChangeButton,
+.viewBagButton {
+	display: flex;
+	justify-content: center;
 	align-items: center;
+	width: 50px;
+	height: 50px;
+	background-color: white;
+	border: 1px solid black;
+	font-size: 2.5em;
+	font-weight: thin;
+	cursor: pointer;
+}
+
+.itemQuantityChangeButton:hover,
+.viewBagButton:hover {
+	background-color: #eee;
 }
 
 .miniCart {
 	position: absolute;
-	right: 0;
-	display: flex;
-	flex-direction: column;
+	top: 100%;
+	right: 5%;
 	width: 20vw;
-	max-height: 50%;
+	max-height: 50vh;
+	padding: 1em;
 	overflow-y: auto;
-	font-size: 0.5rem;
+	font-size: 0.75rem;
 	z-index: 1;
 	background-color: white;
 }
 
+.miniCartInfo {
+	font-size: 1rem;
+}
+
+.miniCartInfo p {
+	margin-top: 0;
+}
+
+.miniCart .cartCard {
+	border: none;
+	width: 100%;
+	padding-top: 2em;
+	padding-bottom: 2em;
+}
+
+.miniCart .productPrice {
+	margin-bottom: 2em;
+}
+
 .miniCart .cartCardGallery {
+	display: flex;
+	align-items: center;
 	width: 50%;
 }
 
-.miniCartButtons {
+.miniCart .cartCardProductInfo {
+	width: 100%;
+}
+
+.miniCart img {
+	height: 100%;
+	object-fit: cover;
+}
+
+.miniCart .cartProductAttributes:last-child {
+	margin-bottom: 0;
+}
+
+.miniCart .attributeItem {
+	flex: 0;
+}
+
+.miniCart .itemQuantityChangeButton {
+	width: 25px;
+	height: 25px;
+	font-size: 2em;
+}
+
+.totalCost {
 	display: flex;
+	justify-content: space-between;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+.miniCartActionButtons {
+	display: flex;
+}
+
+#miniCartOverlay {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.25);
+	z-index: 2;
 }
 
 .cartButton {
 	display: flex;
+	font-family: "Raleway", sans-serif;
+	font-size: larger;
 	width: 50%;
 	padding: 0.5rem 0;
 	margin: 0.5rem;
+	cursor: pointer;
 }
 
 .cartButton .link {
@@ -204,17 +508,24 @@ header {
 	height: 100%;
 	justify-content: center;
 	align-items: center;
-	cursor: default;
 }
 
 .cartIcon {
+	display: flex;
+	justify-content: flex-end;
 	position: relative;
+	right: 0;
+}
+
+.cartIcon img {
+	width: 1.2em;
 }
 
 .cartIcon p {
 	position: absolute;
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	top: 0;
 	right: 0;
 	margin: 0;
@@ -224,5 +535,5 @@ header {
 	background-color: black;
 	color: white;
 	border-radius: 50%;
-	transform: translateY(-25%) translateX(25%);
+	transform: translateY(-25%) translateX(50%);
 }
