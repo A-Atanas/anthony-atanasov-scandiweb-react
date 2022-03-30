@@ -184,13 +184,14 @@ header {
 	position: relative;
 	height: 350px;
 	width: 350px;
+	display: flex;
+	justify-content: center;
 }
 
 .productImage {
-	object-fit: cover;
-	width: 100%;
+	object-fit: contain;
 	height: 100%;
-	/* aspect-ratio: 1; */
+	aspect-ratio: 1;
 }
 
 .outOfStock {
