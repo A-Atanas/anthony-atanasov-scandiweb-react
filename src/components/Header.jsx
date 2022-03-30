@@ -9,15 +9,19 @@ class Header extends React.Component {
 			<header>
 				<Navigation categories={this.props.categories} />
 				<div className="logo">
-					<img src={logo} alt="Company logotype"/>
+					<img src={logo} alt="Company logotype" />
 				</div>
 				<Actions
 					currencies={this.props.currencies}
 					currencyIndex={this.props.currencyIndex}
 					chooseCurrency={this.props.chooseCurrency}
+					bagSize={this.props.bagSize}
+					cart={this.props.cart}
 					showingMiniCart={this.props.showingMiniCart}
 					toggleMiniCart={this.props.toggleMiniCart}
-					bagSize={this.props.bagSize}
+					clearCart={this.props.clearCart}
+					incrementProductQuantity={this.props.incrementProductQuantity}
+					decrementProductQuantity={this.props.decrementProductQuantity}
 				/>
 			</header>
 		);

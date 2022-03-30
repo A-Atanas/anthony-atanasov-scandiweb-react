@@ -499,7 +499,7 @@ header {
 	right: 0;
 	bottom: 0;
 	background-color: rgba(0, 0, 0, 0.25);
-	z-index: 2;
+	z-index: 3;
 }
 
 .cartButton {
@@ -531,7 +531,7 @@ header {
 	width: 1.2em;
 }
 
-.cartIcon p {
+.cartIcon > p {
 	position: absolute;
 	display: flex;
 	justify-content: center;

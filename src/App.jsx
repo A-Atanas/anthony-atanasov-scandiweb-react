@@ -96,13 +96,13 @@ class App extends React.Component {
 		this.setState({ cart: newCart });
 	}
 
-	toggleMiniCart = () => {
-		this.setState({ showingMiniCart: !this.state.showingMiniCart });
-	}
-
 	clearCart = () => {
 		localStorage.removeItem("cart");
 		this.setState({ cart: [] })
+	}
+
+	toggleMiniCart = () => {
+		this.setState({ showingMiniCart: !this.state.showingMiniCart });
 	}
 
 	render() {
@@ -114,22 +114,14 @@ class App extends React.Component {
 						currencies={this.state.currencies}
 						currencyIndex={this.state.currencyIndex}
 						chooseCurrency={(index) => this.chooseCurrency(index)}
-						showingMiniCart={this.state.showingMiniCart}
-						toggleMiniCart={this.toggleMiniCart}
 						bagSize={this.state.cart.reduce((acc, product) => acc + product.quantity, 0)}
+						cart={this.state.cart}
+						toggleMiniCart={this.toggleMiniCart}
+						showingMiniCart={this.state.showingMiniCart}
+						clearCart={this.clearCart}
+						incrementProductQuantity={(index) => this.incrementProductQuantity(index)}
+						decrementProductQuantity={(index) => this.decrementProductQuantity(index)}
 					/>
-					{this.state.showingMiniCart ?
-						<CartPage
-							currencyIndex={this.state.currencyIndex}
-							cart={this.state.cart}
-							incrementProductQuantity={(index) => this.incrementProductQuantity(index)}
-							decrementProductQuantity={(index) => this.decrementProductQuantity(index)}
-							isMiniCart={true}
-							currencySymbol={this.state.currencies?.[this.state.currencyIndex]?.symbol}
-							toggleMiniCart={this.toggleMiniCart}
-							showingMiniCart={this.state.showingMiniCart}
-							clearCart={this.clearCart}
-						/> : null}
 				</div>
 				<Switch>
 					<Route exact path="/">

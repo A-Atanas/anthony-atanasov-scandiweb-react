@@ -1,6 +1,6 @@
 import React from "react";
-import EmptyCart from "../assets/empty-cart.svg";
 import CurrenciesDropdown from "./CurrenciesDropdown";
+import MiniCartDropdown from "./MiniCartDropdown";
 
 class Actions extends React.Component {
 
@@ -13,10 +13,17 @@ class Actions extends React.Component {
 					chooseCurrency={this.props.chooseCurrency}
 					currencyIndex={this.props.currencyIndex}
 				/>
-				<div className="cartIcon" onClick={() => this.props.toggleMiniCart()}>
-					<img src={EmptyCart} alt="Empty cart" />
-					{this.props.bagSize ? <p>{this.props.bagSize}</p> : null}
-				</div>
+				<MiniCartDropdown 
+					bagSize={this.props.bagSize}
+					currencies={this.props.currencies}
+					currencyIndex={this.props.currencyIndex}
+					cart={this.props.cart}
+					showingMiniCart={this.props.showingMiniCart}
+					toggleMiniCart={this.props.toggleMiniCart}
+					clearCart={this.props.clearCart}
+					incrementProductQuantity={this.props.incrementProductQuantity}
+					decrementProductQuantity={this.props.decrementProductQuantity}
+				/>
 			</div>
 		);
 	}
