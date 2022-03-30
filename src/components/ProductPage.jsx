@@ -93,10 +93,17 @@ class ProductPage extends React.Component {
 					</div>
 					<button
 						onClick={
-							() => this.props.addToCart({ product, chosenAttributes: { ...this.state.chosenAttributes } })
+							() => product.inStock
+								? this.props.addToCart({
+									product,
+									chosenAttributes: {
+										...this.state.chosenAttributes
+									}
+								})
+								: false
 						}
-						className="addToCartButton"
-					>ADD TO CART</button>
+						className={classNames("addToCartButton", { outOfStockButton: !product.inStock })}
+					>{product.inStock ? "ADD TO CART" : "OUT OF STOCK"}</button>
 					<div className="defaultFontText">
 						{ReactHtmlParser(product.description)}
 					</div>

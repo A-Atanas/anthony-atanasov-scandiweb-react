@@ -1,7 +1,7 @@
 import React from "react";
 import PageNotFound from "./PageNotFound";
 import EmptyCart from "../assets/empty-cart.svg";
-import {capitalize} from "../util/capitalize";
+import { capitalize } from "../util/capitalize";
 import { getCategoryProducts, getProduct } from "../api/api";
 import { Link } from "react-router-dom";
 
@@ -54,9 +54,11 @@ class CategoryPage extends React.Component {
 									{!product.inStock ? (
 										<p className="outOfStockText">OUT OF STOCK</p>
 									) : null}
-									<button className="quickAddToCartButton" onClick={(event) => this.quicklyAddToCart(event, product.id)}>
-										<img src={EmptyCart} alt="Empty cart" className="buyInOneClickIcon" />
-									</button>
+									{product.inStock
+										? <button className="quickAddToCartButton" onClick={(event) => this.quicklyAddToCart(event, product.id)}>
+											<img src={EmptyCart} alt="Empty cart" className="buyInOneClickIcon" />
+										</button>
+										: null}
 								</div>
 								<div className="productNameAndPrice">
 									<p>{product.name}</p>

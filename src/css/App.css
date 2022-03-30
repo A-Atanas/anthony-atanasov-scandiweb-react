@@ -316,6 +316,15 @@ header {
 	color: white;
 }
 
+.outOfStockButton {
+	background-color: #ccc;
+	cursor: default;
+}
+
+.outOfStockButton:hover {
+	filter: none;
+}
+
 .cart {
 	display: flex;
 	justify-self: flex-start;
